@@ -136,7 +136,9 @@ console.log(rahasia);
 
 
 
-
+// Di Python: 7 // 3  -> Hasil: 2
+let hasil1 = Math.floor(7 / 3); 
+console.log(hasil1); // Output: 2
 
 
 
