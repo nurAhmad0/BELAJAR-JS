@@ -146,6 +146,26 @@ console.log(hasil1); // Output: 2
 
 
 
+
+
+
+
+
+const harga = 1500000;
+
+
+console.log(`${harga}`); // "1500000"  (Kurang enak dibaca pengguna)
+console.log(String(harga)); // "1500000"
+
+// Format Indonesia
+console.log(harga.toLocaleString("id-ID")); 
+// Hasil: "1.500.000" (Memakai Titik)
+
+// Format Amerika Serikat (en-US)
+console.log(harga.toLocaleString("en-US")); 
+// Hasil: "1,500,000" (Memakai Koma)
+
+
 /* ==========================================================================
    💡 RINGKASAN MEMORI UNTUK KAWAN PROGRAMMER:
    - document : Pintu masuk untuk mengelola isi halaman HTML.
