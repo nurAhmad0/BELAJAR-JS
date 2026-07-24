@@ -229,3 +229,135 @@ console.log(logAktivitas.size); // 2
 for (let [waktu, aksi] of logAktivitas) {
   console.log(`[${waktu}] - ${aksi}`);
 }
+
+
+
+
+
+
+
+
+
+//cek key dan value di map
+
+
+const userMap = new Map();
+userMap.set("nama", "Budi");
+userMap.set("role", "Admin");
+
+// Cek apakah KEY "nama" ada di Map?
+console.log(userMap.has("nama")); // ✅ true
+console.log(userMap.has("umur")); // ❌ false
+
+
+
+// Cek apakah VALUE "Budi" ada di dalam Map?
+const adaBudi = Array.from(userMap.values()).includes("Budi");
+console.log(adaBudi); // ✅ true
+
+
+
+
+
+
+
+
+
+
+
+
+//cek key dan nilai objek
+const userObj = {
+  nama: "Budi",
+  role: "Admin"
+};
+
+// --- Cara 1: Pakai operator 'in' ---dan juag in itu juagakan cek method dalam objek dan juga method yang ada didalam warisan juga
+console.log("nama" in userObj); // ✅ true
+console.log("umur" in userObj); // ❌ false
+
+// --- Cara 2: Pakai Object.hasOwn() (Rekomendasi Modern) ---
+console.log(Object.hasOwn(userObj, "nama")); // ✅ true
+
+
+// Cek apakah VALUE "Admin" ada di Object?
+const adaAdmin = Object.values(userObj).includes("Admin");
+console.log(adaAdmin); // ✅ true
+
+
+
+
+
+
+
+//map
+// Memiliki 2 Elemen Tombol di HTML
+const tombolLogin = document.getElementById("btnLogin");
+const tombolRegister = document.getElementById("btnRegister");
+
+// ✅ PAKAI MAP: Menjadikan Elemen HTML sebagai KEY!
+const statusTombol = new Map();
+statusTombol.set(tombolLogin, { dibekukan: false, klikCount: 5 });
+statusTombol.set(tombolRegister, { dibekukan: true, klikCount: 0 });
+
+// Mengambil data status tombolLogin secara instan:
+console.log(statusTombol.get(tombolLogin));
+
+
+
+
+
+// --- Cara 1: Langsung ubah propertinya (Paling Ringkas) ---
+// Ambil objeknya, lalu ubah klikCount-nya
+statusTombol.get(tombolLogin).klikCount = 6; 
+
+// --- Cara 2: Ambil ke variabel dulu, ubah, lalu set ulang ---
+const dataLogin = statusTombol.get(tombolLogin);
+dataLogin.klikCount = 7;
+statusTombol.set(tombolLogin, dataLogin);
+
+console.log(statusTombol.get(tombolLogin).klikCount); // Output: 7
+
+
+
+
+
+
+//mengubah dari map ke objek
+// Data awal berbentuk MAP (Hasil olahan di Frontend)
+const keranjangMap = new Map();
+keranjangMap.set("makanan", "Nasi Goreng");
+keranjangMap.set("harga", 25000);
+
+// 🔄 KONVERSI KE OBJECT (Siap dikirim ke Database / JSON.stringify):
+const keranjangObj = Object.fromEntries(keranjangMap);
+
+// Cek Hasilnya:
+console.log(keranjangObj);
+// Output: { makanan: 'Nasi Goreng', harga: 25000 }
+
+// Sekarang aman untuk dijadikan string JSON:
+const jsonSiapKirim = JSON.stringify(keranjangObj);
+console.log(jsonSiapKirim); 
+// Output: '{"makanan":"Nasi Goreng","harga":25000}'
+
+
+
+
+//mengubah dari objek ke map
+// Data awal berbentuk OBJECT (Misal dari Database / JSON)
+const dataUserObj = {
+  id: 101,
+  nama: "Budi",
+  role: "Admin"
+};
+
+// 🔄 KONVERSI KE MAP:
+const dataUserMap = new Map(Object.entries(dataUserObj));
+
+// Cek Hasilnya:
+console.log(dataUserMap);
+// Output: Map(3) { 'id' => 101, 'nama' => 'Budi', 'role' => 'Admin' }
+
+// Sekarang kamu bisa pakai fitur Map!
+console.log(dataUserMap.size); // 3
